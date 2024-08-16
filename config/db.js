@@ -1,5 +1,5 @@
-import { MongoClient } from 'mongodb';
-import dotenv from 'dotenv';
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ const client = new MongoClient(uri);
 export const connectDB = async () => {
   try {
     await client.connect();
-    console.log('MongoDB connected...');
+    console.log("MongoDB connected...");
   } catch (err) {
     console.error(err.message);
     process.exit(1);
@@ -22,5 +22,5 @@ export const connectDB = async () => {
 };
 
 export const getDB = () => {
-  return client.db('yourDatabaseName'); // Replace with your actual database name
+  return client.db("ezyBazaarDB");
 };

@@ -82,7 +82,20 @@ export const getProducts = async (req, res) => {
   }
 };
 
-
+// Insert Products (for development/testing purposes)
+export const insertProducts = async (req, res) => {
+  const db = getDB();
+  const products = Array.from({ length: 40 }).map((_, i) =>
+    createProduct({
+      name: `Product ${i + 1}`,
+      image: `https://via.placeholder.com/150`,
+      description: `Description for Product ${i + 1}`,
+      price: Math.floor(Math.random() * 100) + 1,
+      category: i % 2 === 0 ? "Electronics" : "Clothing",
+      brand: i % 2 === 0 ? "Brand A" : "Brand B",
+      ratings: Math.floor(Math.random() * 5) + 1,
+    })
+  );
 
   try {
     await db.collection("products").insertMany(products);

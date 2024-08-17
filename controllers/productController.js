@@ -105,6 +105,17 @@ export const insertProducts = async (req, res) => {
   }
 };
 
+// Get all unique categories
+export const getAllCategories = async (req, res) => {
+  const db = getDB();
+
+  try {
+    const categories = await db.collection("products").distinct("category");
+    res.status(200).json({ categories });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch categories" });
+  }
+};
 
 // Get all unique brands
 export const getAllBrands = async (req, res) => {

@@ -5,9 +5,9 @@ export const createProduct = (data) => {
       description: data.description || '',
       price: data.price || 0,
       category: data.category || '',
-      brandName: data.brandName || '',
+      brand: data.brandName || '',
       ratings: data.ratings || 0,
-      createdAt: new Date(),
+      creation_time: new Date(),
     };
   };
   

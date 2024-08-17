@@ -29,7 +29,7 @@ export const getProducts = async (req, res) => {
   // Filter by brand
   if (brand) {
     const brandNames = brand.split(",");
-    query.brandName = { $in: brandNames };
+    query.brand = { $in: brandNames };
   }
 
   // Filter by price range
@@ -49,10 +49,10 @@ export const getProducts = async (req, res) => {
       sortCriteria.price = -1;
       break;
     case "date_asc":
-      sortCriteria.createdAt = 1;
+      sortCriteria.creation_time = 1;
       break;
     case "date_desc":
-      sortCriteria.createdAt = -1;
+      sortCriteria.creation_time = -1;
       break;
     default:
       break;
@@ -65,7 +65,10 @@ export const getProducts = async (req, res) => {
   };
 
   try {
-    const products = await db.collection("products").find(query, options).toArray();
+    const products = await db
+      .collection("products")
+      .find(query, options)
+      .toArray();
     const productCount = await db.collection("products").countDocuments(query);
     const totalPages = Math.ceil(productCount / size);
 
@@ -89,7 +92,7 @@ export const insertProducts = async (req, res) => {
       description: `Description for Product ${i + 1}`,
       price: Math.floor(Math.random() * 100) + 1,
       category: i % 2 === 0 ? "Electronics" : "Clothing",
-      brandName: i % 2 === 0 ? "Brand A" : "Brand B",
+      brand: i % 2 === 0 ? "Brand A" : "Brand B",
       ratings: Math.floor(Math.random() * 5) + 1,
     })
   );
@@ -101,7 +104,6 @@ export const insertProducts = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 // Get all unique categories
 export const getAllCategories = async (req, res) => {
@@ -120,7 +122,7 @@ export const getAllBrands = async (req, res) => {
   const db = getDB();
 
   try {
-    const brands = await db.collection("products").distinct("brandName");
+    const brands = await db.collection("products").distinct("brand");
     res.status(200).json({ brands });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch brands" });

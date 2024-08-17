@@ -15,6 +15,8 @@ const corsOptions = {
   origin: [
     "http://localhost:5173",
     "http://localhost:5174",
+    "https://ezy-bazaar-live.vercel.app",
+    "https://ezy-bazaar-live.netlify.app",
   ],
   credentials: true,
   optionSuccessStatus: 200,

@@ -33,7 +33,7 @@ To run this project locally, follow these steps:
   npm install
   
 
-  3. *Start the Backend Server*
+3. *Start the Backend Server*
 - Use nodemon to start the backend server:
   
   nodemon index.js

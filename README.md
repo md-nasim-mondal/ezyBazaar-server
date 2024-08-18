@@ -41,6 +41,7 @@ To run this project locally, follow these steps:
 - Ensure MongoDB URI, username, and password are set in a .env file in the backend directory:
   
   MONGODB_URI=<your-mongodb-uri>
+  ACCESS_TOKEN_SECRET=<your-personal-secret-key>
   
 
 1. *Set Environment Variables*
